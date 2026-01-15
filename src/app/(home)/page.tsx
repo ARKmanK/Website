@@ -6,7 +6,7 @@ import { ArrowRight, HardDrive } from 'lucide-react'
 import RatesSection from './RatesSection'
 import ProjectsSection from './ProjectsSection'
 import { getProjects, getProjectTags } from '@/lib/supabase/api'
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
+import WebSocketConnector from '@/components/WebSocketConnectot'
 
 export const dynamic = 'force-dynamic'
 
@@ -16,6 +16,7 @@ const HomePage = async () => {
 
 	return (
 		<main className='flex flex-col min-h-screen min-w-screen items-center relative' id='Главная'>
+			<WebSocketConnector />
 			<div className='absolute w-full'>
 				<div className='bg-black relative h-[900px] Nborder'>
 					<img
