@@ -1,7 +1,6 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-
 import { Moon, Sun } from 'lucide-react'
 import { Button } from '../ui/button'
 import {
@@ -16,10 +15,10 @@ const ThemeToggler = () => {
 
 	return (
 		<>
-			<div className='bg-background rounded-xl p-2 fixed top-7 right-3 sm:right-15'>
+			<div className=' rounded-xl p-2 sm:right-15 ml-2'>
 				<DropdownMenu modal={false}>
 					<DropdownMenuTrigger asChild>
-						<Button variant='outline' size='icon'>
+						<Button size='icon' className='ring-1 ring-black'>
 							<Sun className='h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90' />
 							<Moon className='absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
 						</Button>

@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const Header = () => {
 	return (
-		<header className='flex w-full Nborder justify-between py-2 h-[150px]'>
+		<header className='flex w-full Nborder justify-between py-2 h-[150px] max-w-[1440px] z-50'>
 			<div className='flex Nborder'>
 				<Image width={175} height={130} src='/logo.png' alt='logo' />
 				<div className='flex flex-col mt-6 ml-11'>

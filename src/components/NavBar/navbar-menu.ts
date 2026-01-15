@@ -20,8 +20,4 @@ export const navbarMenu: INavbarMenu[] = [
 		href: '/Тарифы',
 		title: 'Тарифы',
 	},
-	{
-		href: '/Контакты',
-		title: 'Контакты',
-	},
 ]
