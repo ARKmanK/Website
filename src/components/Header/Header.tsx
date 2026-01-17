@@ -6,10 +6,10 @@ const Header = () => {
 			<div className='flex Nborder'>
 				<Image width={175} height={130} src='/logo.png' alt='logo' />
 				<div className='flex flex-col mt-6 ml-11'>
-					<h1 className='text-2xl text-white text-shadow-2xs'>Lorem ipsum dolor, sit amet!</h1>
-					<h2 className='text-lg pt-1'>
+					<p className='text-2xl text-white text-shadow-2xs'>Lorem ipsum dolor, sit amet!</p>
+					<p className='text-lg pt-1'>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, est.
-					</h2>
+					</p>
 				</div>
 			</div>
 			<div className='mr-10 Nborder'>

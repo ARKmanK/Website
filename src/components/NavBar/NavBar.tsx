@@ -1,35 +1,11 @@
 'use client'
 
-import Link from 'next/link'
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	NavigationMenuTrigger,
-} from '@/ui/navigation-menu'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/ui/navigation-menu'
 import { navbarMenu } from './navbar-menu'
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from 'lucide-react'
 import { Button } from '../ui/button'
-import ThemeToggler from '../Theme/ThemeToggler'
-/* import { useIsMobile } from '@/hooks/use-mobile' */
+import { ScrollToSection } from '@/lib/scrollToSection'
 
 const NavBar = () => {
-	/* const isMobile = useIsMobile() */
-
-	const ScrollToSection = (sectionId: string) => {
-		const section = document.getElementById(sectionId)
-		if (section) {
-			const sectionPosition = section.getBoundingClientRect().top
-			const offsetPosition = sectionPosition + window.scrollY
-			window.scrollTo({
-				top: offsetPosition,
-				behavior: 'smooth',
-			})
-		}
-	}
-
 	return (
 		<div className='flex w-full justify-end sticky top-0 z-50'>
 			<NavigationMenu
@@ -49,7 +25,6 @@ const NavBar = () => {
 					))}
 				</NavigationMenuList>
 				<Button className='rounded-xl px-4 ml-2 bg-[#6858c7] text-lg'>Контакты</Button>
-				{/* <ThemeToggler /> */}
 			</NavigationMenu>
 		</div>
 	)

@@ -13,6 +13,12 @@ export type Tag = {
 	tag: string
 }
 
+export type Rates = {
+	id: number
+	name: string
+	price: string
+}
+
 export const getProjects = async (): Promise<Project[]> => {
 	try {
 		const { data, error } = await supabase
@@ -23,7 +29,6 @@ export const getProjects = async (): Promise<Project[]> => {
 		if (error) {
 			throw new Error(`Supabase error: ${error.message}`)
 		}
-
 		return data || []
 	} catch (error) {
 		return []
@@ -86,6 +91,24 @@ export const getProjectTags = async (): Promise<Tag[][]> => {
 		return result
 	} catch (error) {
 		console.error('Error in getProjectTags:', error)
+		return []
+	}
+}
+
+export const getRatesData = async (): Promise<Rates[]> => {
+	try {
+		const { data, error } = await supabase
+			.from('rates')
+			.select('*')
+			.order('id', { ascending: true })
+
+		if (error) {
+			throw new Error(`Supabase error: ${error.message}`)
+		}
+
+		return data || []
+	} catch (error) {
+		console.error('Error fetching rates:', error)
 		return []
 	}
 }
