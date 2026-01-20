@@ -9,7 +9,6 @@ export const ProjectsSection = () => {
 			<div className='flex justify-start Nborder'>
 				<p className='text-white text-3xl'>Наши проекты</p>
 			</div>
-
 			<Suspense fallback={<Skeleton className='h-100' />}>
 				<ProjectContent />
 			</Suspense>

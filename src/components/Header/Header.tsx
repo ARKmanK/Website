@@ -22,7 +22,7 @@ const Header = () => {
 						<ul>
 							<a href='/'>
 								<Image
-									src='/telegram_icon.png'
+									src='/telegram_icon_black.png'
 									alt='telegram_icon'
 									width={28}
 									height={28}
@@ -33,7 +33,7 @@ const Header = () => {
 						<ul>
 							<a href='/'>
 								<Image
-									src='/vk_icon.png'
+									src='/vk_icon_black.png'
 									alt='vk_icon'
 									width={28}
 									height={28}
@@ -44,7 +44,7 @@ const Header = () => {
 						<ul>
 							<a href='/'>
 								<Image
-									src='/phone_icon.png'
+									src='/phone_icon_black.png'
 									alt='phone_icon'
 									width={28}
 									height={28}

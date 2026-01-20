@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase/server'
+import { ISiteSettings } from '@/types/SiteSettings'
 
 export type Project = {
 	id: number
@@ -95,20 +96,69 @@ export const getProjectTags = async (): Promise<Tag[][]> => {
 	}
 }
 
-export const getRatesData = async (): Promise<Rates[]> => {
+export const getRatesData = async (): Promise<{ data: Rates[]; error: Error | null }> => {
 	try {
-		const { data, error } = await supabase
+		const { data, error: supabaseError } = await supabase
 			.from('rates')
 			.select('*')
 			.order('id', { ascending: true })
 
-		if (error) {
-			throw new Error(`Supabase error: ${error.message}`)
+		if (supabaseError) {
+			return {
+				data: [],
+				error: new Error(`Supabase error ${supabaseError.message}`),
+			}
 		}
 
-		return data || []
+		return {
+			data: data || [],
+			error: null,
+		}
 	} catch (error) {
 		console.error('Error fetching rates:', error)
-		return []
+		return {
+			data: [],
+			error: error instanceof Error ? error : new Error('Unknown error'),
+		}
+	}
+}
+
+export const getSiteSettings = async (): Promise<ISiteSettings> => {
+	try {
+		const { data, error } = await supabase.from('site_settings').select('settings').maybeSingle()
+
+		if (error) {
+			console.error('Error fetching site settings:', error)
+			return {}
+		}
+
+		return data?.settings || {}
+	} catch (error) {
+		console.error('Error in getSiteSettings:', error)
+		return {}
+	}
+}
+
+export const updateSiteSettings = async (settings: ISiteSettings) => {
+	try {
+		const { data } = await supabase.from('site_settings').select('id, settings').maybeSingle()
+
+		if (data) {
+			const updatedSettings = {
+				...data.settings,
+				...settings,
+			}
+
+			const { error } = await supabase
+				.from('site_settings')
+				.update({ settings: updatedSettings })
+				.eq('id', data.id)
+
+			if (error) throw error
+		}
+		return { success: true }
+	} catch (error) {
+		console.error('Error updating site settings:', error)
+		return { success: false, error }
 	}
 }

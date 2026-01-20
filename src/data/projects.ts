@@ -1,4 +1,4 @@
-interface IProjectsInfo {
+interface IProjectsInfosdf {
 	name: string
 	url: string
 	description: string
@@ -6,7 +6,7 @@ interface IProjectsInfo {
 	img_url?: string
 }
 
-export const projects_info: IProjectsInfo[] = [
+export const projects_infosdf: IProjectsInfosdf[] = [
 	{
 		name: 'Колобок',
 		url: 'https://colobok.com',

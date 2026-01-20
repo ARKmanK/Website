@@ -1,11 +1,19 @@
+/* 'use client' */
+
 import { Badge } from '@/components/ui/badge'
 import RateButton from '@/components/ui/Button/RateButton'
 import { Card, CardContent } from '@/components/ui/card'
 import { getRatesData } from '@/lib/supabase/api'
+import { toast } from 'sonner'
 
 const RatesSection = async () => {
-	const rates = await getRatesData()
+	const { data: rates, error } = await getRatesData()
 	const [rate_1_data, rate_2_data, rate_3_data] = rates
+
+	if (error) {
+		toast(`${error}`)
+		console.log(error)
+	}
 
 	return (
 		<section className='h-auto min-h-[1120px] flex py-15 flex-col px-20' id='Тарифы'>
