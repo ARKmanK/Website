@@ -3,9 +3,9 @@ import { ReactNode } from 'react'
 
 export interface IMetrix {
 	title: string
-	value: string | ReactNode
+	value: number | ReactNode
 	icon: LucideIcon
-	color: 'string'
-	change: 'string'
-	description: 'string'
+	color: string
+	change: string
+	description: string
 }
