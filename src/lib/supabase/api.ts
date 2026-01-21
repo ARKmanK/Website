@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase/server'
-import { ISiteSettings } from '@/types/SiteSettings'
+import { ISiteSettings } from '@/types/siteSettings-type'
 
 export type Project = {
 	id: number
@@ -18,6 +18,20 @@ export type Rates = {
 	id: number
 	name: string
 	price: string
+}
+
+export type Traffic = {
+	date: string
+	desktop: number
+	mobile: number
+}
+
+export type Statistics = {
+	date: string
+	online: number
+	max_online: number
+	views: number
+	avg_time: number
 }
 
 export const getProjects = async (): Promise<Project[]> => {
@@ -160,5 +174,53 @@ export const updateSiteSettings = async (settings: ISiteSettings) => {
 	} catch (error) {
 		console.error('Error updating site settings:', error)
 		return { success: false, error }
+	}
+}
+
+export const checkDBStatus = async (): Promise<boolean> => {
+	try {
+		const { error } = await supabase.rpc('ping')
+
+		return !error
+	} catch {
+		return false
+	}
+}
+
+export const getSiteTraffic = async (): Promise<Traffic[]> => {
+	try {
+		const { data, error } = await supabase
+			.from('site_traffic')
+			.select('*')
+			.order('date', { ascending: true })
+
+		if (error) {
+			console.error('Error fetching site settings:', error)
+			return []
+		}
+
+		return data
+	} catch (error) {
+		console.error('Error in getSiteTraffic:', error)
+		return []
+	}
+}
+
+export const getSiteStatistics = async (): Promise<Statistics[]> => {
+	try {
+		const { data, error } = await supabase
+			.from('site_statistics')
+			.select('*')
+			.order('date', { ascending: true })
+			.single()
+
+		if (error) {
+			console.error('Error fetching site statistics:', error)
+			return []
+		}
+		return data
+	} catch (error) {
+		console.error('Error in getSiteStatistics:', error)
+		return []
 	}
 }

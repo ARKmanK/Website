@@ -1,23 +1,23 @@
-// app/admin/components/AnalyticsTab.tsx
-'use client'
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Download, Calendar } from 'lucide-react'
+import { Suspense } from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
+import { TrafficChart } from '../Charts/TrafficChart'
 
-export default function AnalyticsTab() {
+export default async function AnalyticsTab() {
 	return (
-		<div className='space-y-6'>
+		<section className='space-y-6'>
 			<Card>
 				<CardHeader>
 					<div className='flex justify-between items-center'>
 						<CardTitle>Статистика посещаемости</CardTitle>
 						<div className='flex gap-2'>
-							<Button variant='outline' size='sm'>
+							<Button variant='outline' size='sm' disabled>
 								<Calendar className='h-4 w-4 mr-2' />
 								Выбрать период
 							</Button>
-							<Button variant='outline' size='sm'>
+							<Button variant='outline' size='sm' disabled>
 								<Download className='h-4 w-4 mr-2' />
 								Экспорт
 							</Button>
@@ -25,14 +25,11 @@ export default function AnalyticsTab() {
 					</div>
 				</CardHeader>
 				<CardContent>
-					<div className='h-64 flex items-center justify-center border rounded-lg bg-gradient-to-b from-gray-50 to-white'>
-						<div className='text-center'>
-							<div className='text-lg font-semibold text-gray-700 mb-2'>График будет здесь</div>
-							<p className='text-gray-500'>Подключите аналитику для отображения данных</p>
-						</div>
-					</div>
+					<Suspense fallback={<Skeleton className='h-[250px] w-full' />}>
+						<TrafficChart />
+					</Suspense>
 				</CardContent>
 			</Card>
-		</div>
+		</section>
 	)
 }

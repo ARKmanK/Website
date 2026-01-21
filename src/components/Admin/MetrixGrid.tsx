@@ -1,7 +1,6 @@
-// app/admin/components/MetricsGrid.tsx
 'use client'
 
-import NewConnection from '@/app/admin/NewConnection'
+import NewConnection from '@/components/UsersNumber'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Users, Eye, TrendingUp, Clock } from 'lucide-react'
 
@@ -52,7 +51,7 @@ export default function MetricsGrid() {
 	}
 
 	return (
-		<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
+		<section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
 			{metrics.map((metric, index) => (
 				<Card key={index} className='shadow-sm hover:shadow-md transition-shadow'>
 					<CardHeader className='pb-2'>
@@ -65,7 +64,7 @@ export default function MetricsGrid() {
 					</CardHeader>
 					<CardContent>
 						<div className='space-y-2'>
-							<div className='text-3xl font-bold text-gray-900'>{metric.value}</div>
+							<div className='text-3xl font-bold text-primary'>{metric.value}</div>
 							<div className='flex items-center justify-between'>
 								<span className='text-sm text-gray-500'>{metric.description}</span>
 								<span
@@ -80,6 +79,6 @@ export default function MetricsGrid() {
 					</CardContent>
 				</Card>
 			))}
-		</div>
+		</section>
 	)
 }

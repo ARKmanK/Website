@@ -1,14 +1,8 @@
 'use client'
 
 import useSiteSettings from '@/hooks/useSiteSettings'
-import useSiteSetting from '@/hooks/useSiteSettings'
 import { useThemeChecker } from '@/hooks/useThemeChecker'
-import { usePathname } from 'next/navigation'
 import { createContext, ReactNode, useContext } from 'react'
-
-/* interface IFeatureFlagsContext {
-	isNewYearAnimationEnabled: boolean
-} */
 
 interface IFeatureFlagsContext {
 	activeTheme: string | null

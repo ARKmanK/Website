@@ -1,7 +1,7 @@
 'use client'
 
 import { isCurrentDateInRange } from '@/utils/isDateInRange'
-import { ISiteSettings, ITheme } from '@/types/SiteSettings'
+import { ISiteSettings, ITheme } from '@/types/siteSettings-type'
 
 interface ThemeCheckResult {
 	isThemeActive: boolean

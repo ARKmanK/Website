@@ -10,7 +10,7 @@ const themeComponents = {
 	/* halloween: dynamic(() => import('./Halloween')),
 	valentine: dynamic(() => import('./Valentine')),
 	easter: dynamic(() => import('./Easter')), */
-} as const
+}
 
 type ThemeName = keyof typeof themeComponents
 
@@ -20,7 +20,6 @@ const ThemeContainer = () => {
 	// Если нет активной темы или тема не активна
 	if (!activeTheme || !isThemeActive) return null
 
-	// Проверяем, есть ли такой компонент
 	const ThemeComponent = themeComponents[activeTheme as ThemeName]
 
 	if (!ThemeComponent) {
